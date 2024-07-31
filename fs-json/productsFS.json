@@ -1,16 +1,1 @@
-[
-	{
-		"title": "Title de prueba",
-		"descripcion": "descripcion de prueba",
-		"stock": 100,
-		"price": 1000,
-		"id": 1
-	},
-	{
-		"title": "Title de prueba 2",
-		"descripcion": "descripcion de prueba 2",
-		"stock": 100,
-		"price": 1000,
-		"id": 2
-	}
-]
+[]

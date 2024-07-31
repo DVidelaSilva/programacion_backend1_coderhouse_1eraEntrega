@@ -1,18 +1,18 @@
 const { Router } = require('express')
-const ProductsManagerFs = require('../managers/fileSystem/products.managers')
+const CartsManagerFs = require('../managers/fileSystem/carts.managers')
 
 const router = Router()
-const productsManagerFS = new ProductsManagerFs();
+const cartsManagerFS = new CartsManagerFs()
 
 
 // Ruta Obtener Productos
 router.get('/', async (req, res) => {
-    try{
+/*     try{
         const productsFS = await productsManagerFS.getProducts()
         res.send({status: 'Busqueda en File System Exitosa', data: productsFS})
     } catch (error){
         res.status(400).send({ status: 'error', message: error.message })
-    }
+    } */
 });
 
 
@@ -20,8 +20,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params
-        const productsFSbyId = await productsManagerFS.getProductById(id)
-        res.send({status: 'Busqueda por ID en File System Exitosa', data: productsFSbyId})
+        const cartsFSbyId = await cartsManagerFS.getCartById(id)
+        res.send({status: 'Busqueda por ID en File System Exitosa', data: cartsFSbyId})
     } catch (error) {
         res.status(400).send({ status: 'error', message: error.message })
     }
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const { body } = req
-        const response = await productsManagerFS.createProducts(body)
+        const response = await cartsManagerFS.createCart(body)
         res.send({status: 'Registro en File System Exitoso', data: response})
     }catch (error) {
         res.status(400).send({ status: 'error', message: error.message });
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 
 // Ruta Actualizar Productos
 router.put('/:id', async (req, res) => {
-    try {
+/*     try {
         const { id } = req.params
         const { body } = req
         const updatedProduct = await productsManagerFS.updateProducts(id,body)
@@ -50,20 +50,20 @@ router.put('/:id', async (req, res) => {
     }catch (error) {
         console.log(error);
         res.status(400).send({ status: 'error', message: error.message });
-    }
+    } */
 });
 
 
 // Ruta Eliminar Productos
 router.delete('/:id', async (req, res) => {
-    try {
+/*     try {
         const { id } = req.params
         const deleteProduct = await productsManagerFS.deleteProducts(id)
         res.send({status: 'Eliminacion en File System Exitosa', data: deleteProduct})
     }catch (error) {
         console.log(error);
         res.status(400).send({ status: 'error', message: error.message })
-    }
+    } */
 });
 
 

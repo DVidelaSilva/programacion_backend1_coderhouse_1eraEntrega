@@ -1,5 +1,6 @@
 const express       = require('express')
 const productRouter = require('./routes/products.router.js')
+const cartRouter = require('./routes/carts.router.js')
 
 
 const app = express()
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 // endpoint
 
 app.use('/api/products', productRouter)
+app.use('/api/carts', cartRouter)
 
 
 
