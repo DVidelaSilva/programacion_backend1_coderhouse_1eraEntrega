@@ -1,5 +1,5 @@
-const fs = require('fs');
-const path = './fs-json/productsFS.json'
+const fs    = require('fs')
+const path  = './fs-json/productsFS.json'
 
 
 class ProductsManagerFs {
@@ -37,7 +37,7 @@ class ProductsManagerFs {
             }
             return products
         } catch(error) {
-            console.log(error);
+            console.log(error)
             throw error
         }
     };
@@ -60,13 +60,13 @@ class ProductsManagerFs {
             }
             // Valida si encuentra el producto por el ID
             if(productById){
-                console.log(`Producto ID '${id}' encontrado en File System`, productById);
+                console.log(`Producto ID '${id}' encontrado en File System`, productById)
                 return productById
             } else {
                 throw new Error (`Producto ID '${id}' NO encontrado en File System`)
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
             throw error
         }
     };
@@ -88,7 +88,7 @@ class ProductsManagerFs {
                 stock: newProduct.stock,
                 category: newProduct.category,
                 thumbnails: newProduct.thumbnails
-            };
+            }
 
             //Validaciones de Campos a recibir
             
@@ -101,31 +101,36 @@ class ProductsManagerFs {
 
             // Validaciones Campos requeridos y validacion de tipo de datos
             if (!productToSave.title || typeof productToSave.title !== 'string') {
-                throw new Error('El campo title no fue ingresado, o no es un texto');
+                throw new Error('El campo title no fue ingresado, o no es un texto')
             }
             if (!productToSave.description || typeof productToSave.description !== 'string') {
-                throw new Error('El campo description no fue ingresado, o no es un texto');
+                throw new Error('El campo description no fue ingresado, o no es un texto')
             }
             if (!productToSave.code || typeof productToSave.code !== 'string') {
-                throw new Error('El campo code no fue ingresado, o no es una texto');
+                throw new Error('El campo code no fue ingresado, o no es una texto')
             }
             if (!productToSave.price || typeof productToSave.price !== 'number') {
-                throw new Error('El campo price no fue ingresado, o no es un numero');
+                throw new Error('El campo price no fue ingresado, o no es un numero')
             }
             if (productToSave.status !== false){
                 productToSave.status = true
             }
             if (!productToSave.stock || typeof productToSave.stock !== 'number') {
-                throw new Error('El campo stock no fue ingresado, o no es un numero');
+                throw new Error('El campo stock no fue ingresado, o no es un numero')
             }
             if (!productToSave.category || typeof productToSave.category !== 'string') {
-                throw new Error('El campo category no fue ingresado, o no es una texto');
+                throw new Error('El campo category no fue ingresado, o no es una texto')
             }
             if (productToSave.thumbnails && typeof productToSave.thumbnails !== 'string') {
-                throw new Error('El campo thumbnails no es una texto');
+                
+                throw new Error('El campo thumbnails no es una texto')
+            } else if (productToSave.thumbnails && typeof productToSave.thumbnails === 'string'){
+                productToSave.thumbnails = productToSave.thumbnails;
             } else {
                 productToSave.thumbnails = ''
             }
+
+            
 
             products.push(productToSave)
 
@@ -133,7 +138,7 @@ class ProductsManagerFs {
             return  newProduct
 
         } catch(error) {
-            console.log(error);
+            console.log(error)
             throw error
         }
     };
@@ -165,7 +170,7 @@ class ProductsManagerFs {
 
                 // Validacion Indice Valido
                 if (indiceProducto === -1) {
-                    throw new Error('Product not found'); 
+                    throw new Error('Product not found')
                 }
 
                 const product = products[indiceProducto]
@@ -181,13 +186,13 @@ class ProductsManagerFs {
                     }
                 }
         
-                fs.writeFileSync(path, JSON.stringify(products, null, '\t'));
+                fs.writeFileSync(path, JSON.stringify(products, null, '\t'))
 
             } else {
                 throw new Error (`Producto ID '${id}' NO encontrado en File System`)
             }
         } catch (error){
-            console.log(error);
+            console.log(error)
             throw error
         }
     };
@@ -196,7 +201,6 @@ class ProductsManagerFs {
 
     // DELETE Eliminar Productos en FS
     deleteProducts = async (id) => {
-
         try{
             const products = await this.readProducts()
 
@@ -215,21 +219,20 @@ class ProductsManagerFs {
                 const indiceProducto = products.findIndex(product => product.id === Number(id))
     
                 if (indiceProducto === -1) {
-                    throw new Error('Product not found'); 
+                    throw new Error('Product not found')
                 }
     
-                products.splice(indiceProducto, 1);
+                products.splice(indiceProducto, 1)
         
-                fs.writeFileSync(path, JSON.stringify(products, null, '\t'));
+                fs.writeFileSync(path, JSON.stringify(products, null, '\t'))
             } else {
                 throw new Error (`Producto ID '${id}' NO encontrado en File System`)
             }
         } catch (error){
-            console.log(error);
+            console.log(error)
             throw error
         }
     };
-
 
 };
 

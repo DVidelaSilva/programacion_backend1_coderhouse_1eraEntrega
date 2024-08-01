@@ -1,5 +1,5 @@
-const path = './fs-json/cartsFS.json'
-const fs = require('fs')
+const path              = './fs-json/cartsFS.json'
+const fs                = require('fs')
 const ProductsManagerFs = require('./products.managers')
 
 
@@ -23,7 +23,7 @@ class CartManagerFS {
             console.log(error);
         }
         return []
-    }
+    };
 
 
     //* CRUD de Carritos
@@ -47,7 +47,7 @@ class CartManagerFS {
             const cartsToSave = {
                 id: newCart.id,
                 Products: newCart.product,
-            };
+            }
            
             carts.push(cartsToSave)
 
@@ -55,10 +55,10 @@ class CartManagerFS {
             return  newCart
 
         } catch(error) {
-            console.log(error);
+            console.log(error)
             throw error
         }
-    }
+    };
 
 
     // GET Obtener Carritos por el ID desde FS
@@ -78,21 +78,20 @@ class CartManagerFS {
             }
             // Valida si encuentra el Carrito por el ID
             if(cartById){
-                console.log(`Carrito ID '${id}' encontrado en File System`, cartById);
+                console.log(`Carrito ID '${id}' encontrado en File System`, cartById)
                 return cartById
             } else {
                 throw new Error (`Carrito ID '${id}' NO encontrado en File System`)
             }
         } catch (error) {
-            console.log(error);
+            console.log(error)
             throw error
         }
-    } 
+    };
 
 
     // POST Añadir productos a carrito
     createProductToCart = async (idCart, idProduct, body) => {
-
         try{
         
         //Obtener Carritos por ID
@@ -114,7 +113,7 @@ class CartManagerFS {
 
         //Obtener Productos por ID
         const products = await this.productsManager.readProducts()
-        const productById = products.find(product => product.id === Number(idProduct));
+        const productById = products.find(product => product.id === Number(idProduct))
         
         // Valida que ID sea un numero y mayor a cero
         if (isNaN(idProduct) || Number(idProduct) <= 0) {
@@ -133,27 +132,25 @@ class CartManagerFS {
         const quantityBody = body.quantity
 
         // Verificar si el producto ya está en el carrito
-        const existingProduct = cartById.Products.find(item => item.id === productById.id);
+        const existingProduct = cartById.Products.find(item => item.id === productById.id)
 
         if (existingProduct) {
             // Si ya existe, sumar la cantidad
-            existingProduct.quantity += quantityBody;
+            existingProduct.quantity += quantityBody
         } else {
             // Si no existe, agregar el nuevo objeto
-            cartById.Products.push({ id: productById.id, quantity: quantityBody });
+            cartById.Products.push({ id: productById.id, quantity: quantityBody })
         }
 
-        await fs.promises.writeFile(this.path, JSON.stringify(carts, null, '\t'));     
+        await fs.promises.writeFile(this.path, JSON.stringify(carts, null, '\t'))   
         return cartById
 
         } catch (error){
-            console.log(error);
+            console.log(error)
             throw error
         }
-    }
-
-
-}
+    };
+};
 
 
 module.exports = CartManagerFS
