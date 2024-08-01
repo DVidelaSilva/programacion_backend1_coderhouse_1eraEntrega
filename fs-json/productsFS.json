@@ -1,1 +1,24 @@
-[]
+[
+	{
+		"id": 1,
+		"title": "Title de prueba ",
+		"description": "Descripcion de prueba",
+		"code": "001",
+		"price": 100,
+		"status": true,
+		"stock": 10,
+		"category": "categoria de prueba",
+		"thumbnails": ""
+	},
+	{
+		"id": 2,
+		"title": "Title de prueba ",
+		"description": "Descripcion de prueba",
+		"code": "001",
+		"price": 100,
+		"status": true,
+		"stock": 10,
+		"category": "categoria de prueba",
+		"thumbnails": ""
+	}
+]

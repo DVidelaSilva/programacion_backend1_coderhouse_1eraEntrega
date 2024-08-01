@@ -90,16 +90,6 @@ class ProductsManagerFs {
                 thumbnails: newProduct.thumbnails
             };
 
-            
-            //?title -> string / obligatorio
-            //?description -> string / obligatorio
-            //?code -> string / obligatorio
-            //?price -> number / obligatorio
-            //?status -> boolean / true por defecto
-            //?stock -> number / obligatorio
-            //?category -> string / obligatorio
-            //?thumbnails -> string / opcional
-
             //Validaciones de Campos a recibir
             
             // ID autoincremental
